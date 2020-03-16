@@ -31,15 +31,16 @@ public class VeggetarianCountTest {
         assertThat(cover).isEqualTo(expectedMap);
     }
 
-    @Disabled
     @Test
     public void listWithOneVegetarianCount1(){
+        List<Diet> dietList = new ArrayList<>(Collections.singletonList(VEGE));
+
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 1);
         expectedMap.put(VEGAN, 0);
+        expectedMap.put(OMNI, 0);
+        expectedMap.put(PESCE, 0);
 
-
-        List<Diet> dietList = new ArrayList<>(Collections.singleton(VEGE));
         Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
 
         assertThat(cover).isEqualTo(expectedMap);
