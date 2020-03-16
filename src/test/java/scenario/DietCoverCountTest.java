@@ -21,10 +21,10 @@ public class DietCoverCountTest {
     public void emptyListGivesMapWithEveryDietCount0() {
         List<Diet> list = new ArrayList<>();
         Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE,0);
+        expectedMap.put(VEGE, 0);
         expectedMap.put(VEGAN, 0);
         expectedMap.put(OMNI, 0);
-        expectedMap.put(PESCE,0);
+        expectedMap.put(PESCE, 0);
 
         Map<Diet, Integer> cover = DietCalculator.countCover(list);
 
@@ -32,7 +32,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void listWithOneVegetarianCount1(){
+    public void listWithOneVegetarianCount1() {
         List<Diet> dietList = new ArrayList<>(Collections.singletonList(VEGE));
 
         Map<Diet, Integer> expectedMap = new HashMap<>();
@@ -47,8 +47,8 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void listWithTwoVegetarianCount2(){
-        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE,VEGE));
+    public void listWithTwoVegetarianCount2() {
+        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE, VEGE));
 
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 2);
@@ -77,13 +77,28 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void listWithThreeVegeAndTwoVegan(){
-        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE,VEGAN,VEGE,VEGAN,VEGE));
+    public void listWithThreeVegeAndTwoVegan() {
+        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE, VEGAN, VEGE, VEGAN, VEGE));
 
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 3);
         expectedMap.put(VEGAN, 2);
         expectedMap.put(OMNI, 0);
+        expectedMap.put(PESCE, 0);
+
+        Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
+
+        assertThat(cover).isEqualTo(expectedMap);
+    }
+
+    @Test
+    public void listWithOneVegeTwoVeganTwoOmni() {
+        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE, VEGAN, OMNI, VEGAN, OMNI));
+
+        Map<Diet, Integer> expectedMap = new HashMap<>();
+        expectedMap.put(VEGE, 1);
+        expectedMap.put(VEGAN, 2);
+        expectedMap.put(OMNI, 2);
         expectedMap.put(PESCE, 0);
 
         Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
