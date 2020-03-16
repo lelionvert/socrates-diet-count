@@ -45,4 +45,19 @@ public class VeggetarianCountTest {
 
         assertThat(cover).isEqualTo(expectedMap);
     }
+
+    @Test
+    public void listWithTwoVegetarianCount2(){
+        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE,VEGE));
+
+        Map<Diet, Integer> expectedMap = new HashMap<>();
+        expectedMap.put(VEGE, 2);
+        expectedMap.put(VEGAN, 0);
+        expectedMap.put(OMNI, 0);
+        expectedMap.put(PESCE, 0);
+
+        Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
+
+        assertThat(cover).isEqualTo(expectedMap);
+    }
 }

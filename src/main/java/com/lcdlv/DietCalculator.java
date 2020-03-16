@@ -10,11 +10,7 @@ public class DietCalculator {
 
     public static Map<Diet, Integer> countCover(List<Diet> dietList) {
         Map<Diet, Integer> result = new HashMap<>();
-        if (dietList.isEmpty()) {
-            result.put(VEGE, 0);
-        } else {
-            result.put(VEGE, 1);
-        }
+        result.put(VEGE, dietList.size());
         result.put(VEGAN, 0);
         result.put(PESCE, 0);
         result.put(OMNI, 0);
