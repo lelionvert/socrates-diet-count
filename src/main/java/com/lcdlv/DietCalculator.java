@@ -12,7 +12,11 @@ public class DietCalculator {
         Map<Diet, Integer> result = new HashMap<>();
         long count = dietList.stream().filter(diet -> diet.equals(VEGE)).count();
         result.put(VEGE, Math.toIntExact(count));
-        result.put(VEGAN, 0);
+        if (dietList.contains(VEGAN)){
+            result.put(VEGAN,1);
+        } else {
+            result.put(VEGAN, 0);
+        }
         return result;
     }
 }

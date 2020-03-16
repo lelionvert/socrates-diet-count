@@ -43,7 +43,7 @@ public class VeggetarianCountTest {
         Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 0);
-        expectedMap.put(VEGAN, 0);
+        expectedMap.put(VEGAN, 1);
 
         assertThat(cover).isEqualTo(expectedMap);
     }
