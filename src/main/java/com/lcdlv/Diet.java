@@ -4,6 +4,7 @@ public enum Diet {
 
     VEGE("vegetarian"),
     OMNI("omnivore"),
+    PESCE("pescetarian"),
     VEGAN("vegan");
 
     private String name;

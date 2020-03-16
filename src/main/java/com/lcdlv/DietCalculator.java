@@ -10,13 +10,11 @@ public class DietCalculator {
 
     public static Map<Diet, Integer> countCover(List<Diet> dietList) {
         Map<Diet, Integer> result = new HashMap<>();
-        long count = dietList.stream().filter(diet -> diet.equals(VEGE)).count();
-        result.put(VEGE, Math.toIntExact(count));
-        if (dietList.contains(VEGAN)){
-            result.put(VEGAN,1);
-        } else {
-            result.put(VEGAN, 0);
-        }
+        result.put(VEGE, 0);
+        result.put(VEGAN, 0);
+        result.put(PESCE, 0);
+        result.put(OMNI, 0);
+
         return result;
     }
 }
