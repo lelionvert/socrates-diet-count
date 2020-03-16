@@ -4,10 +4,7 @@ import com.lcdlv.Diet;
 import com.lcdlv.DietCalculator;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,10 +26,12 @@ public class VeggetarianCountTest {
 
     @Test
     public void listWithOneVegetarianCount1(){
-        List<Diet> list = new ArrayList<>(Collections.singleton(Diet.VEGGE));
+        Map<Diet, Integer> expectedMap = new HashMap<>();
+        expectedMap.put(Diet.VEGGE, 1);
 
-        Map<Diet, Integer> cover = DietCalculator.countCover(list);
+        List<Diet> dietList = new ArrayList<>(Collections.singleton(Diet.VEGGE));
+        Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
 
-        assertThat(cover.get(Diet.VEGGE)).isEqualTo(1);
+        assertThat(cover).isEqualTo(expectedMap);
     }
 }
