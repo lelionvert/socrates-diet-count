@@ -5,6 +5,7 @@ import com.lcdlv.DietCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -24,5 +25,14 @@ public class VeggetarianCountTest {
         Map<Diet, Integer> cover = DietCalculator.countCover(list);
 
         assertThat(cover.get(Diet.VEGGE)).isEqualTo(0);
+    }
+
+    @Test
+    public void listWithOneVegetarianCount1(){
+        List<Diet> list = new ArrayList<>(Collections.singleton(Diet.VEGGE));
+
+        Map<Diet, Integer> cover = DietCalculator.countCover(list);
+
+        assertThat(cover.get(Diet.VEGGE)).isEqualTo(1);
     }
 }
