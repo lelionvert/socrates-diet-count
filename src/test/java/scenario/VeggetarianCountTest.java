@@ -29,6 +29,7 @@ public class VeggetarianCountTest {
     public void listWithOneVegetarianCount1(){
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 1);
+        expectedMap.put(VEGAN, 0);
 
         List<Diet> dietList = new ArrayList<>(Collections.singleton(VEGE));
         Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
@@ -41,7 +42,8 @@ public class VeggetarianCountTest {
         List<Diet> dietList = new ArrayList<>(Arrays.asList(OMNI, VEGAN));
         Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
         Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE,0);
+        expectedMap.put(VEGE, 0);
+        expectedMap.put(VEGAN, 0);
 
         assertThat(cover).isEqualTo(expectedMap);
     }
@@ -52,6 +54,7 @@ public class VeggetarianCountTest {
 
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 2);
+        expectedMap.put(VEGAN, 0);
         Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
 
         assertThat(cover).isEqualTo(expectedMap);
