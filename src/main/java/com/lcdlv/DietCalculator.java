@@ -13,9 +13,11 @@ public class DietCalculator {
         long countVegan = dietList.stream().filter(diet -> diet.equals(VEGAN)).count();
         long countVege = dietList.stream().filter(diet -> diet.equals(VEGE)).count();
         long countOmni = dietList.stream().filter(diet -> diet.equals(OMNI)).count();
+        long countPesce = dietList.stream().filter(diet -> diet.equals(PESCE)).count();
+
         result.put(VEGE, Math.toIntExact(countVege));
         result.put(VEGAN, Math.toIntExact(countVegan));
-        result.put(PESCE, 0);
+        result.put(PESCE, Math.toIntExact(countPesce));
         result.put(OMNI, Math.toIntExact(countOmni));
 
         return result;
