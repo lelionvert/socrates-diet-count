@@ -10,16 +10,16 @@ public class DietCalculator {
 
     public static Map<Diet, Integer> countCover(List<Diet> dietList) {
         Map<Diet, Integer> result = new HashMap<>();
-        long countVegan = dietList.stream().filter(diet -> diet.equals(VEGAN)).count();
-        long countVege = dietList.stream().filter(diet -> diet.equals(VEGE)).count();
-        long countOmni = dietList.stream().filter(diet -> diet.equals(OMNI)).count();
-        long countPesce = dietList.stream().filter(diet -> diet.equals(PESCE)).count();
 
-        result.put(VEGE, Math.toIntExact(countVege));
-        result.put(VEGAN, Math.toIntExact(countVegan));
-        result.put(PESCE, Math.toIntExact(countPesce));
-        result.put(OMNI, Math.toIntExact(countOmni));
+        result.put(VEGE, countBy(dietList, VEGE));
+        result.put(VEGAN, countBy(dietList, VEGAN));
+        result.put(PESCE, countBy(dietList, PESCE));
+        result.put(OMNI, countBy(dietList, OMNI));
 
         return result;
+    }
+
+    private static int countBy(List<Diet> dietList, Diet vege) {
+        return Math.toIntExact(dietList.stream().filter(diet -> diet.equals(vege)).count());
     }
 }
