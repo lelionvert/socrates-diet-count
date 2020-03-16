@@ -2,7 +2,9 @@ package com.lcdlv;
 
 public enum Diet {
 
-    VEGGE("vegetarian");
+    VEGE("vegetarian"),
+    OMNI("omnivore"),
+    VEGAN("vegan");
 
     private String name;
 
