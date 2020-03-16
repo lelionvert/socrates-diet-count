@@ -10,7 +10,7 @@ import java.util.*;
 import static com.lcdlv.Diet.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VeggetarianCountTest {
+public class DietCoverCountTest {
 
     @Test
     public void testEnv() {
@@ -53,6 +53,36 @@ public class VeggetarianCountTest {
         Map<Diet, Integer> expectedMap = new HashMap<>();
         expectedMap.put(VEGE, 2);
         expectedMap.put(VEGAN, 0);
+        expectedMap.put(OMNI, 0);
+        expectedMap.put(PESCE, 0);
+
+        Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
+
+        assertThat(cover).isEqualTo(expectedMap);
+    }
+
+    @Test
+    public void listWithTwoVegeAndOneVegan() {
+        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE, VEGAN, VEGE));
+
+        Map<Diet, Integer> expectedMap = new HashMap<>();
+        expectedMap.put(VEGE, 2);
+        expectedMap.put(VEGAN, 1);
+        expectedMap.put(OMNI, 0);
+        expectedMap.put(PESCE, 0);
+
+        Map<Diet, Integer> cover = DietCalculator.countCover(dietList);
+
+        assertThat(cover).isEqualTo(expectedMap);
+    }
+
+    @Test
+    public void listWithThreeVegeAndTwoVegan(){
+        List<Diet> dietList = new ArrayList<>(Arrays.asList(VEGE,VEGAN,VEGE,VEGAN,VEGE));
+
+        Map<Diet, Integer> expectedMap = new HashMap<>();
+        expectedMap.put(VEGE, 3);
+        expectedMap.put(VEGAN, 2);
         expectedMap.put(OMNI, 0);
         expectedMap.put(PESCE, 0);
 
