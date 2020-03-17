@@ -20,7 +20,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -101,7 +102,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void returnsOnlyOneVegeTwoOmniTwoPesceWhenOneVegeTwoOmniTwoPesceDietsAreGiven(){
+    public void returnsOnlyOneVegeTwoOmniTwoPesceWhenOneVegeTwoOmniTwoPesceDietsAreGiven() {
         List<Diet> diets = new ArrayList<>(Arrays.asList(VEGE, OMNI, OMNI, PESCE, PESCE));
 
         Map<Diet, Integer> expectedCovers = new HashMap<>();
