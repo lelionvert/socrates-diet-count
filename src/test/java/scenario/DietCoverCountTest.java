@@ -36,7 +36,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -51,7 +52,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -66,7 +68,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -81,7 +84,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -96,7 +100,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 2);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -111,7 +116,8 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 2);
         expectedCovers.put(PESCE, 2);
 
-        Map<Diet, Integer> covers = new DietCalculator(values()).countCoversByDiet(diets);
+        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
+        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
