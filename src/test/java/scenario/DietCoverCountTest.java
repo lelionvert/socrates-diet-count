@@ -20,7 +20,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -35,7 +35,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -50,7 +50,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -65,7 +65,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -80,7 +80,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -95,7 +95,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 2);
         expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -110,7 +110,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 2);
         expectedCovers.put(PESCE, 2);
 
-        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
