@@ -1,25 +1,23 @@
 package com.lcdlv;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import static com.lcdlv.Diet.*;
+import static com.lcdlv.Diet.values;
 
 public class DietCalculator {
 
-    public static Map<Diet, Integer> countCovers(List<Diet> diets) {
-        Map<Diet, Integer> covers = new HashMap<>();
+    public static Map<Diet, Integer> countCovers(List<Diet> covers) {
 
-        covers.put(VEGE, coversByDiet(diets, VEGE));
-        covers.put(VEGAN, coversByDiet(diets, VEGAN));
-        covers.put(PESCE, coversByDiet(diets, PESCE));
-        covers.put(OMNI, coversByDiet(diets, OMNI));
+        return Arrays
+                .stream(values())
+                .collect(Collectors.toMap(dietType -> dietType, dietType -> coversByDiet(covers, dietType)));
 
-        return covers;
     }
 
-    private static int coversByDiet(List<Diet> diets, Diet dietType) {
-        return Math.toIntExact(diets.stream().filter(diet -> diet.equals(dietType)).count());
+    private static int coversByDiet(List<Diet> covers, Diet dietType) {
+        return Math.toIntExact(covers.stream().filter(diet -> diet.equals(dietType)).count());
     }
 }
