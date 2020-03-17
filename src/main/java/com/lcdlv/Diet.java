@@ -7,9 +7,9 @@ public enum Diet {
     PESCE("pescetarian"),
     VEGAN("vegan");
 
-    private String name;
+    private String type;
 
-    Diet(String name) {
-        this.name = name;
+    Diet(String type) {
+        this.type = type;
     }
 }

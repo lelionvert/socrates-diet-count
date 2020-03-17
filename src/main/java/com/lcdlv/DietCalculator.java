@@ -8,18 +8,18 @@ import static com.lcdlv.Diet.*;
 
 public class DietCalculator {
 
-    public static Map<Diet, Integer> countCover(List<Diet> dietList) {
-        Map<Diet, Integer> result = new HashMap<>();
+    public static Map<Diet, Integer> countCovers(List<Diet> diets) {
+        Map<Diet, Integer> covers = new HashMap<>();
 
-        result.put(VEGE, countBy(dietList, VEGE));
-        result.put(VEGAN, countBy(dietList, VEGAN));
-        result.put(PESCE, countBy(dietList, PESCE));
-        result.put(OMNI, countBy(dietList, OMNI));
+        covers.put(VEGE, coversByDiet(diets, VEGE));
+        covers.put(VEGAN, coversByDiet(diets, VEGAN));
+        covers.put(PESCE, coversByDiet(diets, PESCE));
+        covers.put(OMNI, coversByDiet(diets, OMNI));
 
-        return result;
+        return covers;
     }
 
-    private static int countBy(List<Diet> dietList, Diet vege) {
-        return Math.toIntExact(dietList.stream().filter(diet -> diet.equals(vege)).count());
+    private static int coversByDiet(List<Diet> diets, Diet dietType) {
+        return Math.toIntExact(diets.stream().filter(diet -> diet.equals(dietType)).count());
     }
 }
