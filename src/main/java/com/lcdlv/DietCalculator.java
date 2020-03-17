@@ -9,15 +9,15 @@ import static com.lcdlv.Diet.values;
 
 public class DietCalculator {
 
-    public static Map<Diet, Integer> countCovers(List<Diet> covers) {
+    public static Map<Diet, Integer> countCoversByDiet(List<Diet> diets) {
 
         return Arrays
                 .stream(values())
-                .collect(Collectors.toMap(dietType -> dietType, dietType -> coversByDiet(covers, dietType)));
+                .collect(Collectors.toMap(diet -> diet, diet -> countCovers(diets, diet)));
 
     }
 
-    private static int coversByDiet(List<Diet> covers, Diet dietType) {
-        return Math.toIntExact(covers.stream().filter(diet -> diet.equals(dietType)).count());
+    private static int countCovers(List<Diet> diets, Diet chosenDiet) {
+        return Math.toIntExact(diets.stream().filter(diet -> diet.equals(chosenDiet)).count());
     }
 }

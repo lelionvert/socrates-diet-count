@@ -12,106 +12,109 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DietCoverCountTest {
 
     @Test
-    public void emptyListGivesMapWithEveryDietCount0() {
+    public void returnsAllCoversByDietEqualsZeroWhenNoDietGiven() {
         List<Diet> diets = new ArrayList<>();
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 0);
-        expectedMap.put(VEGAN, 0);
-        expectedMap.put(OMNI, 0);
-        expectedMap.put(PESCE, 0);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 0);
+        expectedCovers.put(VEGAN, 0);
+        expectedCovers.put(OMNI, 0);
+        expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
 
     @Test
-    public void listWithOneVegetarianCount1() {
+    public void returnsOnlyOneVegeCoverWhenGivingOneVegeDiet() {
         List<Diet> diets = new ArrayList<>(Collections.singletonList(VEGE));
 
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 1);
-        expectedMap.put(VEGAN, 0);
-        expectedMap.put(OMNI, 0);
-        expectedMap.put(PESCE, 0);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 1);
+        expectedCovers.put(VEGAN, 0);
+        expectedCovers.put(OMNI, 0);
+        expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
 
     @Test
-    public void listWithTwoVegetarianCount2() {
+    public void returnsOnlyTwoVegeCoversWhenGivingTwoVegeDiets() {
         List<Diet> diets = new ArrayList<>(Arrays.asList(VEGE, VEGE));
 
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 2);
-        expectedMap.put(VEGAN, 0);
-        expectedMap.put(OMNI, 0);
-        expectedMap.put(PESCE, 0);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 2);
+        expectedCovers.put(VEGAN, 0);
+        expectedCovers.put(OMNI, 0);
+        expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
 
     @Test
-    public void listWithTwoVegeAndOneVegan() {
+    public void returnsOnlyTwoVegeAndOneVeganCoversWhenTwoVegeAndOneVeganDietsAreGiven() {
         List<Diet> diets = new ArrayList<>(Arrays.asList(VEGE, VEGAN, VEGE));
 
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 2);
-        expectedMap.put(VEGAN, 1);
-        expectedMap.put(OMNI, 0);
-        expectedMap.put(PESCE, 0);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 2);
+        expectedCovers.put(VEGAN, 1);
+        expectedCovers.put(OMNI, 0);
+        expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
 
     @Test
-    public void listWithThreeVegeAndTwoVegan() {
+    public void returnsOnlyThreeVegeAndTwoVeganCoversWhenThreeVegeAndTwoVeganDietsAreGiven() {
         List<Diet> diets = new ArrayList<>(Arrays.asList(VEGE, VEGAN, VEGE, VEGAN, VEGE));
 
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 3);
-        expectedMap.put(VEGAN, 2);
-        expectedMap.put(OMNI, 0);
-        expectedMap.put(PESCE, 0);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 3);
+        expectedCovers.put(VEGAN, 2);
+        expectedCovers.put(OMNI, 0);
+        expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
 
     @Test
-    public void listWithOneVegeTwoVeganTwoOmni() {
+    public void returnsOnlyOneVegeTwoVeganTwoOmniCoversWhenOneVegeTwoVeganTwoOmniDietsAreGiven() {
         List<Diet> diets = new ArrayList<>(Arrays.asList(VEGE, VEGAN, OMNI, VEGAN, OMNI));
 
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 1);
-        expectedMap.put(VEGAN, 2);
-        expectedMap.put(OMNI, 2);
-        expectedMap.put(PESCE, 0);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 1);
+        expectedCovers.put(VEGAN, 2);
+        expectedCovers.put(OMNI, 2);
+        expectedCovers.put(PESCE, 0);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
 
     @Test
-    public void listWithOneVegeTwoOmniTwoPesceNoVegan(){
+    public void returnsOnlyOneVegeTwoOmniTwoPesceWhenOneVegeTwoOmniTwoPesceDietsAreGiven(){
         List<Diet> diets = new ArrayList<>(Arrays.asList(VEGE, OMNI, OMNI, PESCE, PESCE));
 
-        Map<Diet, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(VEGE, 1);
-        expectedMap.put(VEGAN, 0);
-        expectedMap.put(OMNI, 2);
-        expectedMap.put(PESCE, 2);
+        Map<Diet, Integer> expectedCovers = new HashMap<>();
+        expectedCovers.put(VEGE, 1);
+        expectedCovers.put(VEGAN, 0);
+        expectedCovers.put(OMNI, 2);
+        expectedCovers.put(PESCE, 2);
 
-        Map<Diet, Integer> covers = DietCalculator.countCovers(diets);
+        Map<Diet, Integer> covers = DietCalculator.countCoversByDiet(diets);
 
-        assertThat(covers).isEqualTo(expectedMap);
+        assertThat(covers).isEqualTo(expectedCovers);
     }
+
+
+
 }
