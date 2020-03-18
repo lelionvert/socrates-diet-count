@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static com.lcdlv.Diet.VEGAN;
 import static com.lcdlv.Diet.VEGE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static scenario.Meals.*;
 import static scenario.Meals.THURSDAY_EVENING;
 
 public class CoverEqualityTest {
@@ -25,4 +26,13 @@ public class CoverEqualityTest {
 
         assertThat(vegeCover).isNotEqualTo(veganCover);
     }
+
+    @Test
+    public void oneVegeCoverDifferentFromAnotherCoverWithDifferentCountOfMeals(){
+        Cover vegeCover = new Cover(VEGE,2,1, THURSDAY_EVENING);
+        Cover AnotherVegeCover = new Cover(VEGE,3,0, FRIDAY_EVENING);
+
+        assertThat(vegeCover).isNotEqualTo(AnotherVegeCover);
+    }
+
 }
