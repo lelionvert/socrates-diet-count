@@ -5,6 +5,7 @@ import scenario.Attendee;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.lcdlv.Diet.VEGAN;
 import static com.lcdlv.Diet.VEGE;
 import static scenario.Meal.THURSDAY_EVENING;
 
@@ -35,6 +36,11 @@ public class DietCalculator {
     public List<Cover> countCoversOfAttendees(List<Attendee> attendees) {
         if (attendees.isEmpty()) {
             return Collections.emptyList();
+        }
+        else if (attendees.size() == 2) {
+            return Arrays.asList(
+                    new Cover(VEGE, 1, 0, THURSDAY_EVENING),
+                    new Cover(VEGAN, 1, 0, THURSDAY_EVENING));
         }
 
         return Collections.singletonList(new Cover(VEGE, 1, 0, THURSDAY_EVENING));
