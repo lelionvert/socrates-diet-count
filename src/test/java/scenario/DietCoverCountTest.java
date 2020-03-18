@@ -177,7 +177,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void aNewTest() {
+    public void returnThreeVegeCoversWhenHavingThreeVegeAttendeesOnThursdayAt20() {
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
@@ -191,6 +191,22 @@ public class DietCoverCountTest {
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
+
+    @Test
+    public void TEST() {
+        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGAN});
+        List<Attendee> attendees = Arrays.asList(
+                new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
+        );
+        List<Cover> expectedCovers = Collections.singletonList(
+                new Cover(VEGAN, 1, 0, Meal.THURSDAY_EVENING));
+
+        List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
+
+        assertThat(covers).isEqualTo(expectedCovers);
+    }
+
+
 
 
 }

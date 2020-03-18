@@ -33,7 +33,9 @@ public class DietCalculator {
         if (attendees.isEmpty()) {
             return Collections.emptyList();
         }
-
-        return Collections.singletonList(new Cover(VEGE, attendees.size(), 0, THURSDAY_EVENING));
+        if (suggestedDiets[0].equals(VEGE)) {
+            return Collections.singletonList(new Cover(VEGE, attendees.size(), 0, THURSDAY_EVENING));
+        }
+        return Collections.singletonList(new Cover(VEGAN, attendees.size(), 0, THURSDAY_EVENING));
     }
 }
