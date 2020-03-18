@@ -1,20 +1,20 @@
 package com.lcdlv;
 
-import scenario.Meals;
+import scenario.Meal;
 
 import java.util.Objects;
 
 public class Cover {
     private Diet diet;
     private Integer total;
-    private Integer cold;
-    private Meals thursdayEvening;
+    private Integer totalCold;
+    private Meal meal;
 
-    public Cover(Diet diet, Integer total, Integer cold, Meals thursdayEvening) {
+    public Cover(Diet diet, Integer total, Integer totalCold, Meal meal) {
         this.diet = diet;
         this.total = total;
-        this.cold = cold;
-        this.thursdayEvening = thursdayEvening;
+        this.totalCold = totalCold;
+        this.meal = meal;
     }
 
     @Override
@@ -24,12 +24,12 @@ public class Cover {
         Cover cover = (Cover) o;
         return diet == cover.diet &&
                 total.equals(cover.total) &&
-                cold.equals(cover.cold) &&
-                thursdayEvening == cover.thursdayEvening;
+                totalCold.equals(cover.totalCold) &&
+                meal == cover.meal;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(diet, total, cold, thursdayEvening);
+        return Objects.hash(diet, total, totalCold, meal);
     }
 }

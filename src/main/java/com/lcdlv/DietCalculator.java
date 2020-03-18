@@ -1,13 +1,12 @@
 package com.lcdlv;
 
 import scenario.Attendee;
-import scenario.Meals;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.lcdlv.Diet.VEGE;
-import static scenario.Meals.THURSDAY_EVENING;
+import static scenario.Meal.THURSDAY_EVENING;
 
 public class DietCalculator {
 

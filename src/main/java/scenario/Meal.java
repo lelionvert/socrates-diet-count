@@ -1,5 +1,5 @@
 package scenario;
 
-public enum Meals {
+public enum Meal {
     FRIDAY_EVENING, THURSDAY_EVENING
 }
