@@ -164,13 +164,12 @@ public class DietCoverCountTest {
     @Test
     public void returnsVegeVeganCover() {
 
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGAN, VEGE});
+        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
-                new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
+                new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
         List<Cover> expectedCovers = Arrays.asList(
-                new Cover(VEGE, 1, 0, Meal.THURSDAY_EVENING),
-                new Cover(VEGAN, 1, 0, Meal.THURSDAY_EVENING)) ;
+                new Cover(VEGE, 2, 0, Meal.THURSDAY_EVENING)) ;
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 

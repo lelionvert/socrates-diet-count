@@ -39,8 +39,7 @@ public class DietCalculator {
         }
         else if (attendees.size() == 2) {
             return Arrays.asList(
-                    new Cover(VEGE, 1, 0, THURSDAY_EVENING),
-                    new Cover(VEGAN, 1, 0, THURSDAY_EVENING));
+                    new Cover(VEGE, 2, 0, THURSDAY_EVENING));
         }
 
         return Collections.singletonList(new Cover(VEGE, 1, 0, THURSDAY_EVENING));
