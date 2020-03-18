@@ -193,9 +193,9 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void TEST() {
+    public void returnsOneVeganCoverWhenHavingOneVeganAttendee() {
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGAN});
-        List<Attendee> attendees = Arrays.asList(
+        List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
         List<Cover> expectedCovers = Collections.singletonList(
