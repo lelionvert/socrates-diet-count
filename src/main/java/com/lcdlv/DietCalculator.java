@@ -38,7 +38,7 @@ public class DietCalculator {
             return Collections.emptyList();
         }
         else if (attendees.size() == 2) {
-            return Arrays.asList(
+            return Collections.singletonList(
                     new Cover(VEGE, 2, 0, THURSDAY_EVENING));
         }
 
