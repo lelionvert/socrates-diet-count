@@ -223,7 +223,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void anotherTest(){
+    public void returnOnlyOneVeganCoverWhenHavingThreeSuggestedDietsAndOneVeganAttendee(){
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, VEGAN, OMNI});
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
