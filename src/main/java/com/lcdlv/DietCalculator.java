@@ -36,10 +36,12 @@ public class DietCalculator {
     public List<Cover> countCoversOfAttendees(List<Attendee> attendees) {
         if (attendees.isEmpty()) {
             return Collections.emptyList();
-        }
-        else if (attendees.size() == 2) {
+        } else if (attendees.size() == 2) {
             return Collections.singletonList(
                     new Cover(VEGE, 2, 0, THURSDAY_EVENING));
+        } else if (attendees.size() == 3) {
+            return Collections.singletonList(
+                    new Cover(VEGE, 3, 0, THURSDAY_EVENING));
         }
 
         return Collections.singletonList(new Cover(VEGE, 1, 0, THURSDAY_EVENING));
