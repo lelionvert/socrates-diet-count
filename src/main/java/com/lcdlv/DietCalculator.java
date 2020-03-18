@@ -29,10 +29,6 @@ public class DietCalculator {
 
     }
 
-    public List<Cover> newCountCoverByDiet(List<Diet> diets) {
-        return Collections.singletonList(new Cover(VEGE, 0, 0, THURSDAY_EVENING));
-    }
-
     public List<Cover> countCoversOfAttendees(List<Attendee> attendees) {
         if (attendees.isEmpty()) {
             return Collections.emptyList();
