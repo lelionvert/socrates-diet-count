@@ -10,10 +10,10 @@ import static scenario.Meals.THURSDAY_EVENING;
 public class CoverEqualityTest {
 
     @Test
-    public void oneEmptyCoverIsEqualToAnotherEmptyCover() {
-        Cover emptyCover = new Cover(VEGE, 0, 0, THURSDAY_EVENING);
-        Cover anotherEmptyCover = new Cover(VEGE, 0, 0, THURSDAY_EVENING);
+    public void oneVegeCoverWithNoMealIsEqualToAnotherVegeCoverWithNoMealOnThursdayEvening() {
+        Cover vegeCover = new Cover(VEGE, 0, 0, THURSDAY_EVENING);
+        Cover anotherVegeCover = new Cover(VEGE, 0, 0, THURSDAY_EVENING);
 
-        assertThat(emptyCover).isEqualTo(anotherEmptyCover);
+        assertThat(vegeCover).isEqualTo(anotherVegeCover);
     }
 }
