@@ -39,6 +39,14 @@ public class DietCalculator {
                     new Cover(suggestedDiets[1], 1, 0, THURSDAY_EVENING)
             );
         }
+        if(suggestedDiets.length == 3){
+            return Arrays.asList(
+                    new Cover(suggestedDiets[0], 0, 0, THURSDAY_EVENING),
+                    new Cover(suggestedDiets[1], 1, 0, THURSDAY_EVENING),
+                    new Cover(suggestedDiets[2], 0, 0, THURSDAY_EVENING)
+
+            );
+        }
         return Collections.singletonList(new Cover(suggestedDiets[0], attendees.size(), 0, THURSDAY_EVENING));
     }
 }
