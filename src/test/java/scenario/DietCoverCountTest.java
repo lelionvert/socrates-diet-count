@@ -1,5 +1,6 @@
 package scenario;
 
+import com.lcdlv.Cover;
 import com.lcdlv.Diet;
 import com.lcdlv.DietCalculator;
 import org.junit.jupiter.api.Test;
@@ -118,6 +119,30 @@ public class DietCoverCountTest {
 
         Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
         Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+
+        assertThat(covers).isEqualTo(expectedCovers);
+    }
+
+
+    // [{}], [] ===> [{}]
+
+    // [{vege , jeudi, 20H}] === > [{vege, 1, 0, Jeudi soir}]
+    // [{vege , jeudi, 20H}, {vegan , jeudi, 20H}] ===>  [{vege, 1, 0, jeudi soir}, {vegan, 1, 0, jeudi soir}]
+
+    //[{vege , jeudi, 22H}}] ===> [{vege, 1, 1, jeudi soir}]
+    // [{vege , jeudi, 22H}, {vegan , jeudi, 22H}] ===>  [{vege, 1, 1, jeudi soir}, {vegan, 1, 1, jeudi soir}]
+
+    // [{vege , jeudi, 20H}, {vege , jeudi, 22H}] ===>  [{vege, 1, 1, jeudi soir}]
+    // [{vegan , jeudi, 20H}, {vege , jeudi, 22H}] ===>  [{vegan, 1, 0, jeudi soir}, {vege, 1, 1, jeudi soir}]
+
+    @Test
+    public void returnZeroCoverWhenNoAttendees(){
+
+        DietCalculator dietCalculator = new DietCalculator(new Diet[]{});
+        List<Attendee> attendees = Collections.emptyList() ;
+        List<Cover> expectedCovers = Collections.emptyList();
+
+        List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }

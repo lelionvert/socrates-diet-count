@@ -1,8 +1,8 @@
 package com.lcdlv;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import scenario.Attendee;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DietCalculator {
@@ -23,5 +23,13 @@ public class DietCalculator {
                 .stream(suggestedDiets)
                 .collect(Collectors.toMap(diet -> diet, diet -> countCovers(diets, diet)));
 
+    }
+
+    public List<Cover> newCountCoverByDiet(List<Diet> diets) {
+        return Collections.singletonList(new Cover(Diet.VEGE, 0, 0));
+    }
+
+    public List<Cover> countCoversOfAttendees(List<Attendee> attendees) {
+        return Collections.emptyList();
     }
 }

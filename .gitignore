@@ -26,3 +26,4 @@ hs_err_pid*
 .idea
 .flooignore
 .floo
+/socrates-diet-count.iml
