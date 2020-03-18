@@ -1,6 +1,7 @@
 package com.lcdlv;
 
 import scenario.Attendee;
+import scenario.Meals;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class DietCalculator {
     }
 
     public List<Cover> newCountCoverByDiet(List<Diet> diets) {
-        return Collections.singletonList(new Cover(Diet.VEGE, 0, 0));
+        return Collections.singletonList(new Cover(Diet.VEGE, 0, 0, Meals.THURSDAY_EVENING));
     }
 
     public List<Cover> countCoversOfAttendees(List<Attendee> attendees) {

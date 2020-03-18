@@ -5,6 +5,8 @@ import com.lcdlv.Diet;
 import com.lcdlv.DietCalculator;
 import org.junit.jupiter.api.Test;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.*;
 
 import static com.lcdlv.Diet.*;
@@ -126,7 +128,7 @@ public class DietCoverCountTest {
 
     // [{}], [] ===> [{}]
 
-    // [{vege , jeudi, 20H}] === > [{vege, 1, 0, Jeudi soir}]
+    // [{vege , jeudi, 20H}] , [Vege] === > [{vege, 1, 0, Jeudi soir}]
     // [{vege , jeudi, 20H}, {vegan , jeudi, 20H}] ===>  [{vege, 1, 0, jeudi soir}, {vegan, 1, 0, jeudi soir}]
 
     //[{vege , jeudi, 22H}}] ===> [{vege, 1, 1, jeudi soir}]
@@ -136,10 +138,10 @@ public class DietCoverCountTest {
     // [{vegan , jeudi, 20H}, {vege , jeudi, 22H}] ===>  [{vegan, 1, 0, jeudi soir}, {vege, 1, 1, jeudi soir}]
 
     @Test
-    public void returnZeroCoverWhenNoAttendees(){
+    public void returnsZeroCoverWhenNoAttendees() {
 
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{});
-        List<Attendee> attendees = Collections.emptyList() ;
+        List<Attendee> attendees = Collections.emptyList();
         List<Cover> expectedCovers = Collections.emptyList();
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
@@ -147,6 +149,17 @@ public class DietCoverCountTest {
         assertThat(covers).isEqualTo(expectedCovers);
     }
 
+    @Test
+    public void returnsVegeHotCoverWhenHavingOneVegeAttendeeOnThursdayAt20() {
+
+        List<Cover> expectedCovers = Arrays.asList(new Cover(VEGE, 1, 0, Meals.THURSDAY_EVENING));
+
+        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
+        List<Attendee> attendees = Arrays.asList(new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
+
+        List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
+        assertThat(covers).isEqualTo(expectedCovers);
+    }
 
 
 }
