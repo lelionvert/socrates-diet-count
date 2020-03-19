@@ -6,7 +6,13 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class Attendee {
-    public Attendee(Diet diet, DayOfWeek arrivalDay, LocalTime arrivalTime) {
+    private Diet diet;
 
+    public Attendee(Diet diet, DayOfWeek arrivalDay, LocalTime arrivalTime) {
+        this.diet = diet;
+    }
+
+    public boolean isDietOf(Diet suggestedDiet) {
+        return diet.equals(suggestedDiet);
     }
 }
