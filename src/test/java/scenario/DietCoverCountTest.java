@@ -241,7 +241,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void anotherTest() {
+    public void returnsOnlyOneOmniCoverWhenHavingThreeSuggestedDietsAndOneOmniAttendee() {
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, VEGAN, OMNI});
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(OMNI, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
@@ -255,6 +255,5 @@ public class DietCoverCountTest {
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 
         assertThat(covers).isEqualTo(expectedCovers);
-
     }
 }
