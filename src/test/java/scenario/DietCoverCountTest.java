@@ -150,7 +150,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void anotherTest(){
+    public void returnZeroVegeCoverWhenNoAttendeeAndVegeSuggestedDiet(){
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
         List<Attendee> attendees = Collections.emptyList();
         List<Cover> expectedCovers = Collections.singletonList(
@@ -270,7 +270,7 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void testest() {
+    public void returnsOnlyOneVegeAndOneOmniCoverWhenHavingTwoSuggestedDietsAndVegeAndOmniAttendees() {
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, OMNI});
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
