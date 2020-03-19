@@ -28,9 +28,6 @@ public class DietCalculator {
     }
 
     public List<Cover> countCoversOfAttendees(List<Attendee> attendees) {
-        if (attendees.isEmpty()) {
-            return Collections.emptyList();
-        }
         List<Cover> covers = new ArrayList<>();
         for (Diet suggestedDiet : suggestedDiets) {
             long countTotal = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet)).count();
