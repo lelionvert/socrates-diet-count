@@ -31,15 +31,12 @@ public class DietCalculator {
         if (attendees.isEmpty()) {
             return Collections.emptyList();
         }
-        if (suggestedDiets.length > 1) {
-            List<Cover> covers = new ArrayList<>();
-            for (Diet suggestedDiet : suggestedDiets) {
-                long countTotal = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet)).count();
-                covers.add(new Cover(suggestedDiet, Math.toIntExact(countTotal), 0, THURSDAY_EVENING));
-            }
-            return covers;
+        List<Cover> covers = new ArrayList<>();
+        for (Diet suggestedDiet : suggestedDiets) {
+            long countTotal = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet)).count();
+            covers.add(new Cover(suggestedDiet, Math.toIntExact(countTotal), 0, THURSDAY_EVENING));
         }
-        return Collections.singletonList(new Cover(suggestedDiets[0], attendees.size(), 0, THURSDAY_EVENING));
+        return covers;
     }
 
 }
