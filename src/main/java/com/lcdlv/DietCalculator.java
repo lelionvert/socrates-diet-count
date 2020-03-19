@@ -10,9 +10,15 @@ import static scenario.Meal.THURSDAY_EVENING;
 public class DietCalculator {
 
     private final Diet[] suggestedDiets;
+    private AttendeeParser parser;
 
     public DietCalculator(Diet[] suggestedDiets) {
         this.suggestedDiets = suggestedDiets;
+    }
+
+    public DietCalculator(Diet[] diets, AttendeeParser parser) {
+        this.suggestedDiets = diets;
+        this.parser = parser;
     }
 
     private static int countCovers(List<Diet> diets, Diet chosenDiet) {
@@ -36,4 +42,8 @@ public class DietCalculator {
         return covers;
     }
 
+    public List<Cover> countCoversOfAttendeesWithParser(String input) {
+        List<Attendee> attendees = parser.parseAttendees(input);
+        return countCoversOfAttendees(attendees);
+    }
 }

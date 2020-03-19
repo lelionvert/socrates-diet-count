@@ -1,5 +1,6 @@
 package scenario;
 
+import com.lcdlv.AttendeeParser;
 import com.lcdlv.Cover;
 import com.lcdlv.Diet;
 import com.lcdlv.DietCalculator;
@@ -284,5 +285,15 @@ public class DietCoverCountTest {
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 
         assertThat(covers).isEqualTo(expectedCovers);
+    }
+
+    @Test
+    public void anewTestParsing() {
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        DietCalculator dietCalculator = new DietCalculator(new Diet[] {VEGE}, parser);
+        String input = "";
+        List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
+
+        assertThat(parser.isCalled()).isTrue();
     }
 }
