@@ -222,6 +222,7 @@ public class DietCoverCountTest {
         assertThat(covers).isEqualTo(expectedCovers);
     }
 
+
     @Test
     public void returnOnlyOneVeganCoverWhenHavingThreeSuggestedDietsAndOneVeganAttendee(){
         DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, VEGAN, OMNI});

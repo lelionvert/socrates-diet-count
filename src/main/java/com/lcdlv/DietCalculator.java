@@ -5,8 +5,6 @@ import scenario.Attendee;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.lcdlv.Diet.VEGAN;
-import static com.lcdlv.Diet.VEGE;
 import static scenario.Meal.THURSDAY_EVENING;
 
 public class DietCalculator {
@@ -33,20 +31,18 @@ public class DietCalculator {
         if (attendees.isEmpty()) {
             return Collections.emptyList();
         }
-        if (suggestedDiets.length == 2){
-            return Arrays.asList(
-                    new Cover(suggestedDiets[0], 0, 0, THURSDAY_EVENING),
-                    new Cover(suggestedDiets[1], attendees.size(), 0, THURSDAY_EVENING)
-            );
-        }
-        if(suggestedDiets.length == 3){
-            return Arrays.asList(
-                    new Cover(suggestedDiets[0], 0, 0, THURSDAY_EVENING),
-                    new Cover(suggestedDiets[1], attendees.size(), 0, THURSDAY_EVENING),
-                    new Cover(suggestedDiets[2], 0, 0, THURSDAY_EVENING)
-
-            );
+        if (suggestedDiets.length > 1) {
+            List<Cover> covers = new ArrayList<>();
+            for (int i = 0; i < suggestedDiets.length; i++) {
+                if (i == 1) {
+                    covers.add(new Cover(suggestedDiets[i], attendees.size(), 0, THURSDAY_EVENING));
+                } else {
+                    covers.add(new Cover(suggestedDiets[i], 0, 0, THURSDAY_EVENING));
+                }
+            }
+            return covers;
         }
         return Collections.singletonList(new Cover(suggestedDiets[0], attendees.size(), 0, THURSDAY_EVENING));
     }
+
 }
