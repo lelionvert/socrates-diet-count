@@ -34,8 +34,8 @@ public class DietCalculator {
         if (suggestedDiets.length > 1) {
             List<Cover> covers = new ArrayList<>();
             for (Diet suggestedDiet : suggestedDiets) {
-                if (attendees.get(0).isDietOf(suggestedDiet)) {
-                    covers.add(new Cover(suggestedDiet, attendees.size(), 0, THURSDAY_EVENING));
+                if (attendees.get(0).isDietOf(suggestedDiet) || (attendees.size()>1 &&  attendees.get(1).isDietOf(suggestedDiet))) {
+                    covers.add(new Cover(suggestedDiet, 1, 0, THURSDAY_EVENING));
                 } else {
                     covers.add(new Cover(suggestedDiet, 0, 0, THURSDAY_EVENING));
                 }

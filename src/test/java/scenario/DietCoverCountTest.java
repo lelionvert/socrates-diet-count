@@ -256,4 +256,21 @@ public class DietCoverCountTest {
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
+
+    @Test
+    public void testest() {
+        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, OMNI});
+        List<Attendee> attendees = Arrays.asList(
+                new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
+                new Attendee(OMNI, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
+        );
+        List<Cover> expectedCovers = Arrays.asList(
+                new Cover(VEGE, 1, 0, Meal.THURSDAY_EVENING),
+                new Cover(OMNI, 1, 0, Meal.THURSDAY_EVENING)
+        );
+
+        List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
+
+        assertThat(covers).isEqualTo(expectedCovers);
+    }
 }
