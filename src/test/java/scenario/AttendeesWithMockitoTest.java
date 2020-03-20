@@ -34,7 +34,7 @@ public class AttendeesWithMockitoTest {
     private ColdMealCalculator coldMealCalculator;
 
     @Test
-    public void attendeesTestWithMockito() {
+    public void dataIsParsedWhenWeCountCovers() {
 
         String input = "";
         dietCalculator.countCoversOfAttendeesWithParser(input);
@@ -42,17 +42,7 @@ public class AttendeesWithMockitoTest {
     }
 
     @Test
-    public void coldMealTestWithMockito(){
-        String input = "";
-        Mockito.when(attendeeParser.parseAttendees(input)).thenReturn(Collections.singletonList(
-                new Attendee(Diet.VEGE, DayOfWeek.THURSDAY, LocalTime.of(20,0)))
-        );
-        dietCalculator.countCoversOfAttendeesWithParser(input);
-        Mockito.verify(coldMealCalculator).isCold(any());
-    }
-
-    @Test
-    public void aNewTest(){
+    public void checkForEachAttendeeIfHisOrHerMealIsColdWhenCoversAreCounted(){
 
         String input = "";
         List<Attendee> attendees = Arrays.asList(
