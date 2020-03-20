@@ -1,10 +1,8 @@
 package scenario;
 
-import com.lcdlv.AttendeeParser;
-import com.lcdlv.Cover;
-import com.lcdlv.Diet;
-import com.lcdlv.DietCalculator;
+import com.lcdlv.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -15,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DietCoverCountTest {
 
+
     @Test
     public void returnsAllCoversByDietEqualsZeroWhenNoDietGiven() {
         List<Diet> diets = new ArrayList<>();
@@ -24,8 +23,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -40,8 +38,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -56,8 +53,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -72,8 +68,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -88,8 +83,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 0);
         expectedCovers.put(PESCE, 0);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -104,8 +98,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 2);
         expectedCovers.put(PESCE, 0);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -120,8 +113,7 @@ public class DietCoverCountTest {
         expectedCovers.put(OMNI, 2);
         expectedCovers.put(PESCE, 2);
 
-        Diet[] suggestedDiets = new Diet[]{VEGE, VEGAN, OMNI, PESCE};
-        Map<Diet, Integer> covers = new DietCalculator(suggestedDiets).countCoversByDiet(diets);
+        Map<Diet, Integer> covers = new DietCalculator().countCoversByDiet(diets);
 
         assertThat(covers).isEqualTo(expectedCovers);
     }
@@ -140,23 +132,15 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsZeroCoverWhenNoAttendees() {
-
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Collections.emptyList();
-        List<Cover> expectedCovers = Collections.emptyList();
-
-        List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
-
-        assertThat(covers).isEqualTo(expectedCovers);
-    }
-
-    @Test
-    public void returnZeroVegeCoverWhenNoAttendeeAndVegeSuggestedDiet(){
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
-        List<Attendee> attendees = Collections.emptyList();
-        List<Cover> expectedCovers = Collections.singletonList(
-                new Cover(VEGE,0,0,Meal.THURSDAY_EVENING)
+        List<Cover> expectedCovers = Arrays.asList(
+                new Cover(VEGE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
         );
+
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 
         assertThat(covers).isEqualTo(expectedCovers);
@@ -164,11 +148,16 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsVegeHotCoverWhenHavingOneVegeAttendeeOnThursdayAt20() {
+        List<Cover> expectedCovers = Arrays.asList(
+                new Cover(VEGE, 1, 0, Meal.THURSDAY_EVENING),
+                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
+        );
 
-        List<Cover> expectedCovers = Collections.singletonList(new Cover(VEGE, 1, 0, Meal.THURSDAY_EVENING));
-
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
-        List<Attendee> attendees = Collections.singletonList(new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
+        DietCalculator dietCalculator = new DietCalculator();
+        List<Attendee> attendees = Collections.singletonList(
+                new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
         assertThat(covers).isEqualTo(expectedCovers);
@@ -176,13 +165,17 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsTwoCoversVegeWhenHavingTwoVegeAttendeesArrivesThursdayAt20() {
-
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
-        List<Cover> expectedCovers = Collections.singletonList(
-                new Cover(VEGE, 2, 0, Meal.THURSDAY_EVENING));
+
+        List<Cover> expectedCovers = Arrays.asList(
+                new Cover(VEGE, 2, 0, Meal.THURSDAY_EVENING),
+                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
+        );
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 
@@ -191,14 +184,18 @@ public class DietCoverCountTest {
 
     @Test
     public void returnThreeVegeCoversWhenHavingThreeVegeAttendeesOnThursdayAt20() {
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
-        List<Cover> expectedCovers = Collections.singletonList(
-                new Cover(VEGE, 3, 0, Meal.THURSDAY_EVENING));
+        List<Cover> expectedCovers = Arrays.asList(
+                new Cover(VEGE, 3, 0, Meal.THURSDAY_EVENING),
+                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
+        );
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
 
@@ -207,26 +204,14 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsOneVeganCoverWhenHavingOneVeganAttendee() {
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGAN});
-        List<Attendee> attendees = Collections.singletonList(
-                new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
-        );
-        List<Cover> expectedCovers = Collections.singletonList(
-                new Cover(VEGAN, 1, 0, Meal.THURSDAY_EVENING));
-
-        List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
-
-        assertThat(covers).isEqualTo(expectedCovers);
-    }
-
-    @Test
-    public void returnNoVegeCoverAndOneVeganCoverWhenHavingTwoSuggestedDietsAndOneVeganAttendee() {
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, VEGAN});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
         List<Cover> expectedCovers = Arrays.asList(
                 new Cover(VEGE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
                 new Cover(VEGAN, 1, 0, Meal.THURSDAY_EVENING)
         );
 
@@ -235,17 +220,17 @@ public class DietCoverCountTest {
         assertThat(covers).isEqualTo(expectedCovers);
     }
 
-
     @Test
     public void returnOnlyOneVeganCoverWhenHavingThreeSuggestedDietsAndOneVeganAttendee() {
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, VEGAN, OMNI});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
         List<Cover> expectedCovers = Arrays.asList(
                 new Cover(VEGE, 0, 0, Meal.THURSDAY_EVENING),
-                new Cover(VEGAN, 1, 0, Meal.THURSDAY_EVENING),
-                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING)
+                new Cover(OMNI, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 1, 0, Meal.THURSDAY_EVENING)
         );
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
@@ -255,14 +240,15 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsOnlyOneOmniCoverWhenHavingThreeSuggestedDietsAndOneOmniAttendee() {
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, VEGAN, OMNI});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(OMNI, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
         List<Cover> expectedCovers = Arrays.asList(
                 new Cover(VEGE, 0, 0, Meal.THURSDAY_EVENING),
-                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING),
-                new Cover(OMNI, 1, 0, Meal.THURSDAY_EVENING)
+                new Cover(OMNI, 1, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
         );
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
@@ -272,14 +258,16 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsOnlyOneVegeAndOneOmniCoverWhenHavingTwoSuggestedDietsAndVegeAndOmniAttendees() {
-        DietCalculator dietCalculator = new DietCalculator(new Diet[]{VEGE, OMNI});
+        DietCalculator dietCalculator = new DietCalculator();
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(OMNI, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
         List<Cover> expectedCovers = Arrays.asList(
                 new Cover(VEGE, 1, 0, Meal.THURSDAY_EVENING),
-                new Cover(OMNI, 1, 0, Meal.THURSDAY_EVENING)
+                new Cover(OMNI, 1, 0, Meal.THURSDAY_EVENING),
+                new Cover(PESCE, 0, 0, Meal.THURSDAY_EVENING),
+                new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
         );
 
         List<Cover> covers = dietCalculator.countCoversOfAttendees(attendees);
@@ -290,7 +278,7 @@ public class DietCoverCountTest {
     @Test
     public void parserIsCalledWhenWeCountCovers() {
         AttendeeParserDouble parser = new AttendeeParserDouble();
-        DietCalculator dietCalculator = new DietCalculator(new Diet[] {VEGE}, parser);
+        DietCalculator dietCalculator = new DietCalculator(parser);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 
@@ -300,10 +288,11 @@ public class DietCoverCountTest {
     @Test
     public void parserDataAreNotCorruptedWhenWeCountCovers() {
         AttendeeParserDoubleWithInput parser = new AttendeeParserDoubleWithInput();
-        DietCalculator dietCalculator = new DietCalculator(new Diet[] {VEGE}, parser);
+        DietCalculator dietCalculator = new DietCalculator(parser);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 
         assertThat(parser.isCalledWith(input)).isTrue();
     }
+
 }

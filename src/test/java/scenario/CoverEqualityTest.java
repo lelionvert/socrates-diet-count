@@ -31,7 +31,6 @@ public class CoverEqualityTest {
     public void oneVegeCoverDifferentFromAnotherCoverWithDifferentCountOfMeals(){
         Cover vegeCover = new Cover(VEGE,2,1, THURSDAY_EVENING);
         Cover anotherVegeCover = new Cover(VEGE,3,0, FRIDAY_EVENING);
-
         assertThat(vegeCover).isNotEqualTo(anotherVegeCover);
     }
 
