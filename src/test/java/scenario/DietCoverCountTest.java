@@ -288,12 +288,22 @@ public class DietCoverCountTest {
     }
 
     @Test
-    public void anewTestParsing() {
+    public void parserIsCalledWhenWeCountCovers() {
         AttendeeParserDouble parser = new AttendeeParserDouble();
         DietCalculator dietCalculator = new DietCalculator(new Diet[] {VEGE}, parser);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 
         assertThat(parser.isCalled()).isTrue();
+    }
+
+    @Test
+    public void parserDataAreNotCorruptedWhenWeCountCovers() {
+        AttendeeParserDoubleWithInput parser = new AttendeeParserDoubleWithInput();
+        DietCalculator dietCalculator = new DietCalculator(new Diet[] {VEGE}, parser);
+        String input = "";
+        List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
+
+        assertThat(parser.isCalledWith(input)).isTrue();
     }
 }

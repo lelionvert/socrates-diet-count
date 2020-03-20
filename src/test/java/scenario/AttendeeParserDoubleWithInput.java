@@ -5,18 +5,17 @@ import com.lcdlv.AttendeeParser;
 import java.util.Collections;
 import java.util.List;
 
-public class AttendeeParserDouble implements AttendeeParser {
+public class AttendeeParserDoubleWithInput implements AttendeeParser {
 
-    private boolean called;
-
-    public boolean isCalled() {
-        return called;
-    }
+    private String input;
 
     @Override
     public List<Attendee> parseAttendees(String input) {
-        called = true;
+        this.input = input;
         return Collections.emptyList();
     }
 
+    public boolean isCalledWith(String input) {
+        return input.equals(this.input);
+    }
 }
