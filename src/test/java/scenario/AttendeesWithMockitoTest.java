@@ -9,11 +9,14 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.Times;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.zip.CheckedInputStream;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -46,5 +49,17 @@ public class AttendeesWithMockitoTest {
         );
         dietCalculator.countCoversOfAttendeesWithParser(input);
         Mockito.verify(coldMealCalculator).isCold(any());
+    }
+
+    @Test
+    public void aNewTest(){
+
+        String input = "";
+        List<Attendee> attendees = Arrays.asList(
+                new Attendee(Diet.VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
+                new Attendee(Diet.VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
+        Mockito.when(attendeeParser.parseAttendees(input)).thenReturn(attendees);
+        dietCalculator.countCoversOfAttendeesWithParser(input);
+        Mockito.verify(coldMealCalculator, Mockito.times(attendees.size())).isCold(any());
     }
 }
