@@ -2,7 +2,6 @@ package scenario;
 
 import com.lcdlv.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -278,7 +277,7 @@ public class DietCoverCountTest {
     @Test
     public void parserIsCalledWhenWeCountCovers() {
         AttendeeParserDouble parser = new AttendeeParserDouble();
-        DietCalculator dietCalculator = new DietCalculator(parser);
+        DietCalculator dietCalculator = new DietCalculator(parser,null);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 
@@ -288,7 +287,7 @@ public class DietCoverCountTest {
     @Test
     public void parserDataAreNotCorruptedWhenWeCountCovers() {
         AttendeeParserDoubleWithInput parser = new AttendeeParserDoubleWithInput();
-        DietCalculator dietCalculator = new DietCalculator(parser);
+        DietCalculator dietCalculator = new DietCalculator(parser,null);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 

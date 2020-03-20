@@ -9,24 +9,16 @@ import static scenario.Meal.THURSDAY_EVENING;
 
 public class DietCalculator {
 
-    private Diet[] suggestedDiets;
     private AttendeeParser parser;
     private ColdMealCalculator coldMealCalculator;
 
 
     public DietCalculator() {
-        this.suggestedDiets = Diet.values();
         //INITIALISER LES COLLABORATEURS
     }
 
-    public DietCalculator(AttendeeParser parser) {
-        this.suggestedDiets = Diet.values();
-        this.parser = parser;
-        // INITIALISER COLD MEAL CALCULATOR
-    }
-
     public DietCalculator(AttendeeParser parser, ColdMealCalculator coldMealCalculator) {
-        this(parser);
+        this.parser = parser;
         this.coldMealCalculator = coldMealCalculator;
     }
 
@@ -37,7 +29,7 @@ public class DietCalculator {
     public Map<Diet, Integer> countCoversByDiet(List<Diet> diets) {
 
         return Arrays
-                .stream(suggestedDiets)
+                .stream(Diet.values())
                 .collect(Collectors.toMap(diet -> diet, diet -> countCovers(diets, diet)));
 
     }
@@ -46,7 +38,7 @@ public class DietCalculator {
         List<Cover> covers = new ArrayList<>();
 
 
-        for (Diet suggestedDiet : suggestedDiets) {
+        for (Diet suggestedDiet : Diet.values()) {
             long countTotal = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet)).count();
 
             covers.add(new Cover(suggestedDiet, Math.toIntExact(countTotal), 0, THURSDAY_EVENING));
