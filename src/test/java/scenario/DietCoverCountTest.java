@@ -131,7 +131,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsZeroCoverWhenNoAttendees() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Collections.emptyList();
         List<Cover> expectedCovers = Arrays.asList(
                 new Cover(VEGE, 0, 0, Meal.THURSDAY_EVENING),
@@ -154,7 +156,9 @@ public class DietCoverCountTest {
                 new Cover(VEGAN, 0, 0, Meal.THURSDAY_EVENING)
         );
 
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
 
@@ -164,7 +168,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsTwoCoversVegeWhenHavingTwoVegeAttendeesArrivesThursdayAt20() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)));
@@ -183,7 +189,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnThreeVegeCoversWhenHavingThreeVegeAttendeesOnThursdayAt20() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
@@ -203,7 +211,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsOneVeganCoverWhenHavingOneVeganAttendee() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
@@ -221,7 +231,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnOnlyOneVeganCoverWhenHavingThreeSuggestedDietsAndOneVeganAttendee() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(VEGAN, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
@@ -239,7 +251,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsOnlyOneOmniCoverWhenHavingThreeSuggestedDietsAndOneOmniAttendee() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Collections.singletonList(
                 new Attendee(OMNI, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
         );
@@ -257,7 +271,9 @@ public class DietCoverCountTest {
 
     @Test
     public void returnsOnlyOneVegeAndOneOmniCoverWhenHavingTwoSuggestedDietsAndVegeAndOmniAttendees() {
-        DietCalculator dietCalculator = new DietCalculator();
+        AttendeeParserDouble parser = new AttendeeParserDouble();
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         List<Attendee> attendees = Arrays.asList(
                 new Attendee(VEGE, DayOfWeek.THURSDAY, LocalTime.of(20, 0)),
                 new Attendee(OMNI, DayOfWeek.THURSDAY, LocalTime.of(20, 0))
@@ -277,7 +293,8 @@ public class DietCoverCountTest {
     @Test
     public void parserIsCalledWhenWeCountCovers() {
         AttendeeParserDouble parser = new AttendeeParserDouble();
-        DietCalculator dietCalculator = new DietCalculator(parser,null);
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 
@@ -287,7 +304,8 @@ public class DietCoverCountTest {
     @Test
     public void parserDataAreNotCorruptedWhenWeCountCovers() {
         AttendeeParserDoubleWithInput parser = new AttendeeParserDoubleWithInput();
-        DietCalculator dietCalculator = new DietCalculator(parser,null);
+        ColdMealCalculatorDouble coldMealCalculator = new ColdMealCalculatorDouble();
+        DietCalculator dietCalculator = new DietCalculator(parser,coldMealCalculator);
         String input = "";
         List<Cover> covers = dietCalculator.countCoversOfAttendeesWithParser(input);
 

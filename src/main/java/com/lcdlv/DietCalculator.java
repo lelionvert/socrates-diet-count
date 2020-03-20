@@ -2,7 +2,10 @@ package com.lcdlv;
 
 import scenario.Attendee;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static scenario.Meal.THURSDAY_EVENING;
@@ -40,7 +43,7 @@ public class DietCalculator {
 
         for (Diet suggestedDiet : Diet.values()) {
             long countTotal = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet)).count();
-
+            long countCold = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet) && coldMealCalculator.isCold(attendee)).count();
             covers.add(new Cover(suggestedDiet, Math.toIntExact(countTotal), 0, THURSDAY_EVENING));
         }
         return covers;
