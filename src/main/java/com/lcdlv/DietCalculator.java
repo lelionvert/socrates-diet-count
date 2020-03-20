@@ -44,7 +44,7 @@ public class DietCalculator {
         for (Diet suggestedDiet : Diet.values()) {
             long countTotal = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet)).count();
             long countCold = attendees.stream().filter(attendee -> attendee.isDietOf(suggestedDiet) && coldMealCalculator.isCold(attendee)).count();
-            covers.add(new Cover(suggestedDiet, Math.toIntExact(countTotal), 0, THURSDAY_EVENING));
+            covers.add(new Cover(suggestedDiet, Math.toIntExact(countTotal), Math.toIntExact(countCold), THURSDAY_EVENING));
         }
         return covers;
     }
